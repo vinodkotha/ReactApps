@@ -52,7 +52,7 @@ class NewsDetail extends Component {
 
   componentWillUnmount() {
     //call actions api's
-    //  this.props.dispatch(clearSelectedNews());
+    this.props.dispatch(clearSelectedNews());
   }
 }
 
