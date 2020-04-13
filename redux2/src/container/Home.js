@@ -6,13 +6,16 @@ import { galleryNews } from "../action";
 import { bindActionCreators } from "redux";
 import LatestDisplay from "../component/home/latestDisplay";
 import ArticleDisplay from "../component/home/ArticleDisplay";
+import GalleryDisplay from "../component/home/GalleryDisplay";
 
 class Home extends Component {
   componentDidMount() {
     //call actions api's
-    this.props.latestNews();
-    this.props.articleNews();
-    this.props.galleryNews();
+    if (Object.entries(this.props.myArticle).length === 0) {
+      this.props.latestNews();
+      this.props.articleNews();
+      this.props.galleryNews();
+    }
   }
 
   render() {
@@ -20,6 +23,7 @@ class Home extends Component {
       <Fragment>
         <LatestDisplay ldata={this.props.myArticle.latestdata} />
         <ArticleDisplay articleArray={this.props.myArticle.articledata} />
+        <GalleryDisplay galleryArray={this.props.myGallery.gallerydata} />
       </Fragment>
     );
   }
