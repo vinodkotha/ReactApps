@@ -4,9 +4,11 @@ import PropTypes from "prop-types"; //alternative for bindActionCreators
 // import { bindActionCreators } from "redux";
 import { clearSelectedNews } from "../action";
 import { selectedNews } from "../action";
+import LikeCounter from "./LikeCounter";
 
 class NewsDetail extends Component {
   componentWillMount() {
+    //call using propTypes
     this.props.dispatch(selectedNews(this.props.match.params.id));
   }
 
@@ -35,6 +37,13 @@ class NewsDetail extends Component {
 
               <img src={`/images/articles/${data.img}`} />
               <div className="body_news">{data.body}</div>
+              <div>
+                <LikeCounter
+                  articleId={data.id}
+                  likes={data.likes[0]}
+                  dislikes={data.likes[1]}
+                />
+              </div>
             </div>
           </div>
         );

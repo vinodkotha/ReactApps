@@ -14,7 +14,11 @@ export default function (state = {}, action) {
 
     case "CLEAR_SELECTED_NEWS":
       //... state to iterate the array
-      return { ...state, clearselected: action.payload };
+      return { ...state, selected: action.payload };
+
+    case "HANDLE_LIKES":
+      //... state to iterate the array
+      return { ...state, selected: [action.payload] };
 
     default:
       return state;
