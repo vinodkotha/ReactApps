@@ -11,7 +11,9 @@ class LikeCounter extends Component {
         : [this.props.likes, this.props.dislikes + 1];
 
     //call the service using action dispatch
-      this.props.dispatch(handleLikes(newLikes, this.props.articleId));
+    this.props.dispatch(
+      handleLikes(newLikes, this.props.articleId, this.props.from)
+    );
   };
 
   render() {

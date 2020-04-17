@@ -6,7 +6,11 @@ const ArticleNews = (props) => {
     if (articleArray) {
       return articleArray.map((item) => {
         return (
-          <Link to={`/details/${item.id}`} className="item">
+          <Link
+            key="articledisplay "
+            to={`/details/${item.id}`}
+            className="item"
+          >
             <div
               className="left"
               style={{ background: `url(/images/articles/${item.img})` }}

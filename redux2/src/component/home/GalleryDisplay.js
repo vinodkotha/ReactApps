@@ -17,7 +17,11 @@ const galleryDisplay = (props) => {
         <Slider {...settings}>
           {galleryArray.map((item) => {
             return (
-              <Link to="/" className="slider-item">
+              <Link
+                key="gallerydisplay "
+                to={`/gallerydetails/${item.id}`}
+                className="slider-item"
+              >
                 <div
                   className="image"
                   style={{

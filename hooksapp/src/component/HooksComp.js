@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 const url = "";
 
 function HookComp() {
-  const [title] = useState("this is hook app");
+  const [title] = useState("This is a hook app");
   const [details] = useState(
-    "this is hook app to be used to accomplish the state management and lifecycle hooks to call apis"
+    "This is hook app to be used to accomplish the state management and lifecycle hooks to call apis"
   );
   const [count, setCount] = useState(0);
   const [movies, setMovies] = useState("");

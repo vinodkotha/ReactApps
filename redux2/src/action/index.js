@@ -1,4 +1,6 @@
 const url = "http://localhost:8900";
+const articleUrl = "http://localhost:8900/articles";
+const galleryUrl = "http://localhost:8900/galleries";
 
 export function latestNews() {
   const output = fetch(`${url}/articles?_end=3`, {
@@ -44,6 +46,17 @@ export function selectedNews(id) {
   };
 }
 
+export function selectedGalleryNews(id) {
+  const output = fetch(`${url}/galleries?id=${id}`, {
+    method: "GET",
+  }).then((data) => data.json());
+
+  return {
+    type: "SELECTED_GALLERY_NEWS",
+    payload: output,
+  };
+}
+
 export function clearSelectedNews() {
   return {
     type: "CLEAR_SELECTED_NEWS",
@@ -52,18 +65,33 @@ export function clearSelectedNews() {
 }
 
 //patch call for updating just like/dislikes
-export function handleLikes(array, id) {
-  const output = fetch(`${url}/articles/${id}`, {
-    method: "PATCH",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ likes: array }),
-  }).then((data) => data.json());
-
-  return {
-    type: "HANDLE_LIKES",
-    payload: output,
-  };
+export function handleLikes(array, id, from) {
+  var output = "";
+  if (from === "gallery") {
+    output = fetch(`${galleryUrl}/${id}`, {
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ likes: array }),
+    }).then((data) => data.json());
+    return {
+      type: "HANDLE_LIKES",
+      payload: output,
+    };
+  } else {
+    output = fetch(`${articleUrl}/${id}`, {
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ likes: array }),
+    }).then((data) => data.json());
+    return {
+      type: "HANDLE_LIKES",
+      payload: output,
+    };
+  }
 }
